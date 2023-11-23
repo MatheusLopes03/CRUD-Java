@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
-
+import utility.DataFormatada;
 import models.Produto;
 
 public class Main {
@@ -45,7 +46,7 @@ public class Main {
         System.out.println("2 - Editar produto");
         System.out.println("3 - Deletar produto");
         System.out.println("4 - Visualizar lista de produtos");
-        System.out.print("Escolha uma opção: ");
+        System.out.println("Escolha uma opção: ");
     }
     // #endregion
 
@@ -59,7 +60,9 @@ public class Main {
         double valor = scanner.nextDouble();
         scanner.nextLine();
 
-        Produto produto = new Produto(idCounter, nome, quantidade, valor);
+        String dataCadastro = DataFormatada.ConverterDate(new Date());
+
+        Produto produto = new Produto(idCounter, nome, quantidade, valor, dataCadastro);
         produtos.add(produto);
         idCounter++;
         System.out.println("Produto cadastrado com sucesso.");
@@ -92,6 +95,9 @@ public class Main {
             int novaQuantidade = scanner.nextInt();
             System.out.print("Valor: ");
             double novoValor = scanner.nextDouble();
+            scanner.nextLine();
+
+
 
             editandoProduto.setNome(novoNome);
             editandoProduto.setQuantidade(novaQuantidade);
@@ -107,7 +113,7 @@ public class Main {
 
     // #region Deletar produtos
     public static void deletarProduto() {
-        System.out.println("Digite o id do produto que deseja deletar: ");
+        System.out.println("Digite o ID do produto que deseja deletar: ");
         int id = scanner.nextInt();
         scanner.nextLine();
 
@@ -129,7 +135,8 @@ public class Main {
             System.out.println("Nome: " + produto.getNome());
             System.out.println("Quantidade: " + produto.getQuantidade());
             System.out.println("Valor: " + produto.getValor());
-            System.out.println();
+            System.out.println("Data de Cadastro: " + produto.getDataCadastro());
+            System.out.println("\n");
 
             // #region Listar produtos
         }
